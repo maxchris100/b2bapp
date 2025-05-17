@@ -3,7 +3,7 @@ import { serveStatic } from "hono/serve-static";
 import path from 'path'
 import fs from 'fs/promises'
 import { Hono } from 'hono';
-import trpcHandler from './server/routes/trpc';
+import trpcHandler from './server/routes/trpc.ts';
 import { cors } from 'hono/cors';
 import type { VercelRequest, VercelResponse } from '@vercel/node'
 
