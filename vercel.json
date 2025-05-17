@@ -7,13 +7,6 @@
             "config": {
                 "maxLambdaSize": "15mb"
             }
-        },
-        {
-            "src": "client/package.json",
-            "use": "@vercel/static-build",
-            "config": {
-                "distDir": "dist"
-            }
         }
     ],
     "routes": [
