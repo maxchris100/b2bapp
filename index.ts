@@ -32,5 +32,7 @@ app.use('*', serveStatic({
     }
 }))
 
-console.log('🚀 Server is running on http://localhost:5000');
-serve({ fetch: app.fetch, port: 5000 }); // 👈 di sini kamu set port-nya
+// console.log('🚀 Server is running on http://localhost:5000');
+// serve({ fetch: app.fetch, port: 5000 }); // 👈 di sini kamu set port-nya
+
+export default app;
