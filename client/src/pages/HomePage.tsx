@@ -1,6 +1,5 @@
 
 import { trpc } from '../utils/trpc.tsx';
-import { FaSearch } from 'react-icons/fa';
 
 
 const HomePage = () => {

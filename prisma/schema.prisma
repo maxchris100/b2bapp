@@ -13,7 +13,7 @@ model Product {
   slug                 String   @unique
   name                 String
   description          String
-  price                Decimal
+  price                Int
   imageUrl             String?
   stockQuantity        Int?
   minimumOrderQuantity Int?

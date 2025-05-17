@@ -1,6 +1,6 @@
 import { z } from 'zod';
 import { publicProcedure, router } from '..';
-import { prisma } from '@prisma';
+import { prisma } from '../../../prisma';
 import moment from 'moment';
 
 export const productRouter = router({

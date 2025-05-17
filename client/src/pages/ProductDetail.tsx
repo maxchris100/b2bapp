@@ -17,7 +17,6 @@ export default function ProductDetail() {
     } = trpc.product.getById.useQuery(id ?? "", {
         enabled: !!id,
     });
-    const descrip = ``
     // Dummy related products (could be fetched from API too)
     const relatedProducts = [
         { id: "p2", name: "Produk Related 1", price: 120000, imageUrl: "https://asia-exstatic-vivofs.vivo.com/PSee2l50xoirPK7y/1563978058452/5e7d8216d3a308bec15183d45422efcd.jpg" },
@@ -74,7 +73,7 @@ export default function ProductDetail() {
             <div className="col-span-2 flex flex-col">
                 <h1 className="text-3xl font-semibold mb-2">{product.name}</h1>
                 <p className="text-xl text-green-700 mb-4 font-bold">
-                    {formatRupiah(product.price)}
+                    {formatRupiah(product.price ?? 0)}
                 </p>
                 <p className="text-gray-700 mb-4 whitespace-pre-line">{product.description}</p>
                 <div className="flex items-center gap-4 mb-6">
@@ -85,11 +84,11 @@ export default function ProductDetail() {
                         type="number"
                         id="quantity"
                         min={1}
-                        max={product.stockQuantity}
+                        max={product.stockQuantity ?? 0}
                         value={quantity}
                         onChange={(e) => {
                             const val = Number(e.target.value);
-                            if (val >= 1 && val <= product.stockQuantity) setQuantity(val);
+                            if (val >= 1 && val <= (product.stockQuantity ?? 0)) setQuantity(val);
                         }}
                         className="w-20 border border-gray-300 rounded px-2 py-1"
                     />
@@ -100,13 +99,13 @@ export default function ProductDetail() {
 
                 <button
                     onClick={onAddToCart}
-                    disabled={quantity < product.minimumOrderQuantity}
-                    className={`px-6 py-3 rounded text-white font-semibold transition-colors ${quantity >= product.minimumOrderQuantity
+                    disabled={quantity < (product.minimumOrderQuantity ?? 0)}
+                    className={`px-6 py-3 rounded text-white font-semibold transition-colors ${quantity >= (product.minimumOrderQuantity ?? 0)
                         ? "bg-blue-600 hover:bg-blue-700"
                         : "bg-gray-400 cursor-not-allowed"
                         }`}
                     title={
-                        quantity < product.minimumOrderQuantity
+                        quantity < (product.minimumOrderQuantity ?? 0)
                             ? `Minimum order is ${product.minimumOrderQuantity}`
                             : "Add to cart"
                     }
