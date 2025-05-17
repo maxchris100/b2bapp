@@ -1,31 +1,29 @@
 {
-    "projects": {
-        "server": {
-            "framework": null
-        }
-    },
+    "version": 2,
     "builds": [
         {
             "src": "index.ts",
-            "use": "@vercel/node"
+            "use": "@vercel/node",
+            "config": {
+                "maxLambdaSize": "15mb"
+            }
+        },
+        {
+            "src": "client/package.json",
+            "use": "@vercel/static-build",
+            "config": {
+                "distDir": "dist"
+            }
         }
     ],
     "routes": [
         {
-            "src": "/assets/(.*)",
-            "dest": "/client/dist/assets/$1"
-        },
-        {
-            "src": "/",
-            "dest": "/client/dist/index.html"
-        },
-        {
             "src": "/api/(.*)",
-            "dest": "/server/index.ts"
+            "dest": "/index.ts"
         },
         {
             "src": "/(.*)",
-            "dest": "/client/dist/index.html"
+            "dest": "/client/$1"
         }
     ]
 }
