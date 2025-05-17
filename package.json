@@ -4,7 +4,8 @@
   "type": "module",
   "private": true,
   "scripts": {
-    "dev": "bun run index.ts"
+    "dev": "bun run index.ts",
+    "build": "cd client && npm install && npm run build"
   },
   "devDependencies": {
     "@types/bun": "latest"
