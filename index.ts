@@ -1,20 +1,34 @@
 import { serve } from "bun";
 import { serveStatic } from "hono/serve-static";
 import app from "server";
+import path from 'path'
+import fs from 'fs/promises'
 
-// Serve static assets (seperti /assets/logo.png)
+// Serve static assets dari folder client/dist/assets
 app.use('/assets/*', serveStatic({
-    getContent: async (path) => {
-        const file = Bun.file(`client/dist/${path}`)
-        return new Response(file) // ✅ wrap Bun.file in Response
+    getContent: async (pathReq) => {
+        const filePath = path.join(process.cwd(), 'client', 'dist', pathReq)
+        try {
+            const fileBuffer = await fs.readFile(filePath)
+            return new Response(fileBuffer)
+        } catch {
+            return null
+        }
     }
 }))
 
-// Serve index.html for SPA fallback
+// SPA fallback: serve index.html untuk semua route lain
 app.use('*', serveStatic({
     getContent: async () => {
-        const file = Bun.file('client/dist/index.html')
-        return new Response(file) // ✅ same here
+        const indexPath = path.join(process.cwd(), 'client', 'dist', 'index.html')
+        try {
+            const fileBuffer = await fs.readFile(indexPath)
+            return new Response(fileBuffer, {
+                headers: { 'Content-Type': 'text/html' }
+            })
+        } catch {
+            return new Response('Not found', { status: 404 })
+        }
     }
 }))
 
