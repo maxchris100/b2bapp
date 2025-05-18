@@ -13,4 +13,7 @@ export default defineConfig({
     port: 3000,  // Change this to your desired port
     open: true,  // Automatically open the browser after server is started
   },
+  build: {
+    outDir: 'dist',  // Default output directory, no need to change unless customized
+  }
 });

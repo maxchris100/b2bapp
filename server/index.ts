@@ -5,7 +5,6 @@ import fs from 'fs/promises'
 import { Hono } from 'hono';
 import trpcHandler from './routes/trpc.ts';
 import { cors } from 'hono/cors';
-import type { VercelRequest, VercelResponse } from '@vercel/node'
 
 const app = new Hono();
 
@@ -57,20 +56,3 @@ serve({ fetch: app.fetch, port: 5000 }); // 👈 di sini kamu set port-nya
 
 export default app;
 
-
-// 👇 Export Vercel-compatible handler
-// export default async function handler(req: VercelRequest, res: VercelResponse) {
-//     const result = await app.fetch(req as any, {
-//         method: req.method,
-//         headers: req.headers as any,
-//         body: req.body as any,
-//     })
-
-//     // Send response
-//     res.status(result.status)
-//     result.headers.forEach((value, key) => {
-//         res.setHeader(key, value)
-//     })
-//     const body = await result.text()
-//     res.end(body)
-// }
