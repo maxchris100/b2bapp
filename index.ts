@@ -9,7 +9,6 @@ import { trpcServer } from '@hono/trpc-server';
 
 const app = new Hono();
 
-
 app.use(cors({
     origin: ['http://localhost:3000', 'https://b2bapp-maxchris100s-projects.vercel.app', 'http://b2bapp.vercel.app'],  // Allow requests from frontend
     allowMethods: ['GET', 'POST', 'OPTIONS'],  // Make sure these methods are allowed
@@ -23,10 +22,7 @@ app.use('*', async (c, next) => {
 
 app.use('/api/*', trpcServer({ router: appRouter }));
 
-app.use('/assets/*', serveStatic({ root: './client/dist' })) // serve CSS/JS
-
-// Serve all static files
-app.use('/*', serveStatic({ root: './client/dist' }));
+app.use('/assets/*', serveStatic({ root: './client/dist' })) // serve CSS/JS 
 
 // SPA fallback ke index.html
 app.use('*', serveStatic({ path: './client/dist/index.html' }));

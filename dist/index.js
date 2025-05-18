@@ -16,9 +16,7 @@ app.use('*', async (c, next) => {
     return next();
 });
 app.use('/api/*', trpcServer({ router: appRouter }));
-app.use('/assets/*', serveStatic({ root: './client/dist' })); // serve CSS/JS
-// Serve all static files
-app.use('/*', serveStatic({ root: './client/dist' }));
+app.use('/assets/*', serveStatic({ root: './client/dist' })); // serve CSS/JS 
 // SPA fallback ke index.html
 app.use('*', serveStatic({ path: './client/dist/index.html' }));
 // if (process.env.NODE_ENV !== 'vercel') {
