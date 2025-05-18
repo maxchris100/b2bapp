@@ -1,4 +1,4 @@
-import { serve } from '@hono/node-server';
+// import { serve } from '@hono/node-server';
 import { serveStatic } from '@hono/node-server/serve-static';
 import { handle } from '@hono/node-server/vercel';
 import { Hono } from 'hono';
@@ -22,7 +22,7 @@ app.use('/*', serveStatic({ root: './client/dist' }));
 // SPA fallback ke index.html
 app.use('*', serveStatic({ path: './client/dist/index.html' }));
 // if (process.env.NODE_ENV !== 'vercel') {
-console.log('🚀 Server is running on http://localhost:5000');
-serve({ fetch: app.fetch, port: 5000 }); // 👈 di sini kamu set port-nya
+// console.log('🚀 Server is running on http://localhost:5000');
+// serve({ fetch: app.fetch, port: 5000 }); // 👈 di sini kamu set port-nya
 // }
 export default handle(app); // Ensure app is exported as the default export

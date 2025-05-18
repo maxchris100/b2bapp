@@ -1,5 +1,5 @@
 
-import { serve } from '@hono/node-server';
+// import { serve } from '@hono/node-server';
 import { serveStatic } from '@hono/node-server/serve-static'
 import { handle } from '@hono/node-server/vercel'
 import { Hono } from 'hono';
@@ -15,6 +15,11 @@ app.use(cors({
     allowMethods: ['GET', 'POST', 'OPTIONS'],  // Make sure these methods are allowed
     allowHeaders: ['Content-Type', 'Authorization', 'X-Requested-With'], // Add more if needed
 }));
+
+app.use('*', async (c, next) => {
+    console.log(`[${new Date().toISOString()}] ${c.req.method} ${c.req.url}`);
+    return next();
+});
 
 app.use('/api/*', trpcServer({ router: appRouter }));
 
