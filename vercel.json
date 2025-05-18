@@ -9,7 +9,7 @@
             }
         },
         {
-            "src": "index.ts",
+            "src": "server/index.ts",
             "use": "@vercel/node"
         }
     ],
@@ -20,7 +20,7 @@
         },
         {
             "src": "/api/trpc/(.*)",
-            "dest": "/index.ts"
+            "dest": "/server/index.ts"
         }
     ]
 }
