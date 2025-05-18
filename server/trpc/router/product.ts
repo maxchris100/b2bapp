@@ -1,6 +1,6 @@
 import { z } from 'zod';
 import { publicProcedure, router } from '../index.ts';
-import { prisma } from '../../../prisma/index.ts';
+import { prisma } from '../../prisma/index.ts';
 import moment from 'moment';
 
 export const productRouter = router({

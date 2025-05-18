@@ -2,21 +2,25 @@
     "version": 2,
     "builds": [
         {
-            "src": "index.ts",
-            "use": "@vercel/node",
+            "src": "client/package.json",
+            "use": "@vercel/static-build",
             "config": {
-                "maxLambdaSize": "15mb"
+                "distDir": "client/dist"
             }
+        },
+        {
+            "src": "server/index.ts",
+            "use": "@vercel/node"
         }
     ],
     "routes": [
         {
-            "src": "/api/(.*)",
-            "dest": "/index.ts"
-        },
-        {
             "src": "/(.*)",
             "dest": "/client/$1"
+        },
+        {
+            "src": "/api/trpc/(.*)",
+            "dest": "/server/index.ts"
         }
     ]
 }
