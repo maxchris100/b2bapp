@@ -1,8 +1,7 @@
 import { z } from 'zod';
-import { publicProcedure, router } from '../index.ts';
-import { prisma } from '../../prisma/index.ts';
+import { publicProcedure, router } from '../index.js';
+import { prisma } from '../../prisma/index.js';
 import moment from 'moment';
-
 export const productRouter = router({
     getAll: publicProcedure.query(async () => {
         const data = await prisma.product.findMany();
@@ -15,8 +14,8 @@ export const productRouter = router({
     getById: publicProcedure
         .input(z.string())
         .query(async ({ input }) => {
-            return await prisma.product.findUnique({ where: { id: input } });
-        }),
+        return await prisma.product.findUnique({ where: { id: input } });
+    }),
     // POST: buat produk
     // create: publicProcedure
     //     .input(z.object({
@@ -32,7 +31,6 @@ export const productRouter = router({
     //     .mutation(async ({ input }) => {
     //         return await prisma.product.create({ data: input });
     //     }),
-
     // PUT: update produk
     // update: publicProcedure
     //     .input(z.object({
@@ -53,7 +51,6 @@ export const productRouter = router({
     //             data,
     //         });
     //     }),
-
     // DELETE: hapus produk
     // delete: publicProcedure
     //     .input(z.object({ id: z.string() }))

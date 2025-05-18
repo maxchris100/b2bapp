@@ -1,12 +1,12 @@
-import { serve } from "bun";
-import { serveStatic } from "hono/serve-static";
-import path from 'path'
-import fs from 'fs/promises'
+
+import { serve } from '@hono/node-server';
+import { serveStatic } from '@hono/node-server/serve-static'
 import { Hono } from 'hono';
-import trpcHandler from './routes/trpc.ts';
+import trpcHandler from './routes/trpc.js';
 import { cors } from 'hono/cors';
 
 const app = new Hono();
+
 
 app.use(cors({
     origin: ['http://localhost:3000', 'https://b2bapp-maxchris100s-projects.vercel.app'],  // Allow requests from frontend
@@ -22,34 +22,11 @@ app.use('/trpc/*', async (c, next) => {
     }
     return next();
 });
+// Serve all static files
+app.use('/*', serveStatic({ root: './client/dist' }));
 
-// Serve static assets dari folder client/dist/assets
-app.use('/assets/*', serveStatic({
-    getContent: async (pathReq) => {
-        const filePath = path.join(process.cwd(), 'client', 'dist', pathReq)
-        try {
-            const fileBuffer = await fs.readFile(filePath)
-            return new Response(fileBuffer)
-        } catch {
-            return null
-        }
-    }
-}))
-
-// SPA fallback: serve index.html untuk semua route lain
-app.use('*', serveStatic({
-    getContent: async () => {
-        const indexPath = path.join(process.cwd(), 'client', 'dist', 'index.html')
-        try {
-            const fileBuffer = await fs.readFile(indexPath)
-            return new Response(fileBuffer, {
-                headers: { 'Content-Type': 'text/html' }
-            })
-        } catch {
-            return new Response('Not found', { status: 404 })
-        }
-    }
-}))
+// SPA fallback ke index.html
+app.use('*', serveStatic({ path: './client/dist/index.html' }));
 
 console.log('🚀 Server is running on http://localhost:5000');
 serve({ fetch: app.fetch, port: 5000 }); // 👈 di sini kamu set port-nya

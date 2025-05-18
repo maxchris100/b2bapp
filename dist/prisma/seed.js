@@ -1,7 +1,5 @@
 import { PrismaClient } from '@prisma/client';
-
 const prisma = new PrismaClient();
-
 async function main() {
     await prisma.product.createMany({
         data: [
@@ -107,13 +105,11 @@ async function main() {
             },
         ],
     });
-
     console.log('✅ Seed berhasil ditambahkan');
 }
-
 main()
     .then(() => prisma.$disconnect())
     .catch((err) => {
-        console.error(err);
-        return prisma.$disconnect();
-    });
+    console.error(err);
+    return prisma.$disconnect();
+});
