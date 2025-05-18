@@ -1,20 +1,24 @@
 {
   "compilerOptions": {
-    "target": "ES2022", // Target ECMAScript yang sesuai
-    "module": "ESNext", // Gunakan ESNext untuk modul ES
-    "moduleResolution": "node", // Menggunakan resolusi modul seperti Node.js
-    "outDir": "./dist", // Direktori output build
-    "rootDir": ".", // Direktori root dari file TypeScript
-    "esModuleInterop": true, // Untuk kompatibilitas dengan `import`
-    "strict": true, // Mode ketat untuk pemeriksaan kesalahan
-    // "declaration": false,
-    // "emitDeclarationOnly": true,
-    // "allowImportingTsExtensions": true,
-    "resolveJsonModule": true, // Jika Anda menggunakan file JSON
-    "skipLibCheck": true, // Menghindari pemeriksaan tipe di pustaka eksternal
-    "allowJs": true, // Jika Anda ingin mengimpor file JavaScript
+    "module": "commonjs",
+    "declaration": true,
+    "removeComments": true,
+    "emitDecoratorMetadata": true,
+    "experimentalDecorators": true,
+    "allowSyntheticDefaultImports": true,
+    "target": "ES2021",
+    "sourceMap": true,
+    "outDir": "./dist",
+    "baseUrl": "./",
+    "incremental": true,
+    "skipLibCheck": true,
+    "strictNullChecks": false,
+    "noImplicitAny": false,
+    "strictBindCallApply": false,
+    "forceConsistentCasingInFileNames": false,
+    "noFallthroughCasesInSwitch": false
   },
   "exclude": [
     "client"
-  ] // Exclude the 'client' folder from being compiled
+  ]
 }

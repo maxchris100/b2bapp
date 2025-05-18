@@ -1,7 +1,5 @@
 {
   "name": "b2bmobile",
-  "module": "index.ts",
-  "type": "module",
   "scripts": {
     "build": "tsc",
     "start": "bun run index"

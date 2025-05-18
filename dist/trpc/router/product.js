@@ -1,62 +1,20 @@
-import { z } from 'zod';
-import { publicProcedure, router } from '../index.js';
-import { prisma } from '../../prisma/index.js';
-import moment from 'moment';
-export const productRouter = router({
-    getAll: publicProcedure.query(async () => {
-        const data = await prisma.product.findMany();
+"use strict";
+Object.defineProperty(exports, "__esModule", { value: true });
+exports.productRouter = void 0;
+const zod_1 = require("zod");
+const index_js_1 = require("../index.js");
+const index_js_2 = require("../../prisma/index.js");
+exports.productRouter = (0, index_js_1.router)({
+    getAll: index_js_1.publicProcedure.query(async () => {
+        const data = await index_js_2.prisma.product.findMany();
         return data.map(product => ({
             ...product,
-            createdAt: moment(product.createdAt).format('YYYY-MM-DD HH:mm:ss'),
-            updatedAt: moment(product.updatedAt).format('YYYY-MM-DD HH:mm:ss'),
         }));
     }),
-    getById: publicProcedure
-        .input(z.string())
+    getById: index_js_1.publicProcedure
+        .input(zod_1.z.string())
         .query(async ({ input }) => {
-        return await prisma.product.findUnique({ where: { id: input } });
+        return await index_js_2.prisma.product.findUnique({ where: { id: input } });
     }),
-    // POST: buat produk
-    // create: publicProcedure
-    //     .input(z.object({
-    //         sku: z.string(),
-    //         slug: z.string(),
-    //         name: z.string(),
-    //         description: z.string(),
-    //         price: z.number(),
-    //         imageUrl: z.string().url().optional(),
-    //         stockQuantity: z.number(),
-    //         minimumOrderQuantity: z.number(),
-    //     }))
-    //     .mutation(async ({ input }) => {
-    //         return await prisma.product.create({ data: input });
-    //     }),
-    // PUT: update produk
-    // update: publicProcedure
-    //     .input(z.object({
-    //         id: z.string(),
-    //         sku: z.string(),
-    //         slug: z.string(),
-    //         name: z.string(),
-    //         description: z.string(),
-    //         price: z.number(),
-    //         imageUrl: z.string().url().optional(),
-    //         stockQuantity: z.number(),
-    //         minimumOrderQuantity: z.number(),
-    //     }))
-    //     .mutation(async ({ input }) => {
-    //         const { id, ...data } = input;
-    //         return await prisma.product.update({
-    //             where: { id },
-    //             data,
-    //         });
-    //     }),
-    // DELETE: hapus produk
-    // delete: publicProcedure
-    //     .input(z.object({ id: z.string() }))
-    //     .mutation(async ({ input }) => {
-    //         return await prisma.product.delete({
-    //             where: { id: input.id },
-    //         });
-    //     }),
 });
+//# sourceMappingURL=product.js.map

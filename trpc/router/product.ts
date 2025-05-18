@@ -1,15 +1,15 @@
 import { z } from 'zod';
 import { publicProcedure, router } from '../index.js';
 import { prisma } from '../../prisma/index.js';
-import moment from 'moment';
+// import moment from 'moment';
 
 export const productRouter = router({
     getAll: publicProcedure.query(async () => {
         const data = await prisma.product.findMany();
         return data.map(product => ({
             ...product,
-            createdAt: moment(product.createdAt).format('YYYY-MM-DD HH:mm:ss'),
-            updatedAt: moment(product.updatedAt).format('YYYY-MM-DD HH:mm:ss'),
+            // createdAt: moment(product.createdAt).format('YYYY-MM-DD HH:mm:ss'),
+            // updatedAt: moment(product.updatedAt).format('YYYY-MM-DD HH:mm:ss'),
         }));
     }),
     getById: publicProcedure

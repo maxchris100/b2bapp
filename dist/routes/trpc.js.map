@@ -1,0 +1,1 @@
+{"version":3,"file":"trpc.js","sourceRoot":"","sources":["../../routes/trpc.ts"],"names":[],"mappings":";;AAAA,uDAAkE;AAClE,sDAAoD;AAEpD,kBAAe,CAAC,GAAY,EAAE,EAAE,CAC5B,IAAA,2BAAmB,EAAC;IAChB,QAAQ,EAAE,OAAO;IACjB,GAAG;IACH,MAAM,EAAE,oBAAS;IACjB,aAAa,EAAE,GAAG,EAAE,CAAC,CAAC,EAAE,CAAC;CAC5B,CAAC,CAAC"}

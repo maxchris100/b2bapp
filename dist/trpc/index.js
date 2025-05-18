@@ -1,4 +1,8 @@
-import { initTRPC } from '@trpc/server';
-const t = initTRPC.create();
-export const router = t.router;
-export const publicProcedure = t.procedure;
+"use strict";
+Object.defineProperty(exports, "__esModule", { value: true });
+exports.publicProcedure = exports.router = void 0;
+const server_1 = require("@trpc/server");
+const t = server_1.initTRPC.create();
+exports.router = t.router;
+exports.publicProcedure = t.procedure;
+//# sourceMappingURL=index.js.map
