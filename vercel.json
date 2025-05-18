@@ -9,11 +9,11 @@
     "routes": [
         {
             "src": "/(.*)",
-            "dest": "/client/dist/$1"
+            "dest": "/dist/index.js"
         },
         {
             "src": "/api/trpc/(.*)",
-            "dest": "/index.js"
+            "dest": "/dist/index.js"
         }
     ]
 }

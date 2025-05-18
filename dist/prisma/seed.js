@@ -1,7 +1,5 @@
-"use strict";
-Object.defineProperty(exports, "__esModule", { value: true });
-const client_1 = require("@prisma/client");
-const prisma = new client_1.PrismaClient();
+import { PrismaClient } from '@prisma/client';
+const prisma = new PrismaClient();
 async function main() {
     await prisma.product.createMany({
         data: [
@@ -115,4 +113,3 @@ main()
     console.error(err);
     return prisma.$disconnect();
 });
-//# sourceMappingURL=seed.js.map

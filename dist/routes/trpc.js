@@ -1,11 +1,17 @@
-"use strict";
-Object.defineProperty(exports, "__esModule", { value: true });
-const fetch_1 = require("@trpc/server/adapters/fetch");
-const index_js_1 = require("../trpc/router/index.js");
-exports.default = (req) => (0, fetch_1.fetchRequestHandler)({
-    endpoint: '/trpc',
-    req,
-    router: index_js_1.appRouter,
-    createContext: () => ({}),
+// import { fetchRequestHandler } from '@trpc/server/adapters/fetch';
+import { appRouter } from '../trpc/router/index.js';
+// export default (req: Request) =>
+//     fetchRequestHandler({
+//         endpoint: '/trpc',
+//         req,
+//         router: appRouter,
+//         createContext: () => ({}),
+//     });
+import { createHTTPHandler } from '@trpc/server/adapters/standalone'; // atau dari hono adapter jika kamu pakai itu
+// import { appRouter } from './trpc/router'; // path ke router kamu
+// import { createContext } from './trpc/context'; // kalau ada context
+const trpcHandler = createHTTPHandler({
+    router: appRouter
+    // createContext,
 });
-//# sourceMappingURL=trpc.js.map
+export default trpcHandler;

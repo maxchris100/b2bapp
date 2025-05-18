@@ -1,10 +1,12 @@
 {
   "name": "b2bmobile",
+  "type": "module",
   "scripts": {
     "start": "node dist/index.js",
     "build": "tsc",
     "dev": "bun run index",
-    "deploy": "vercel"
+    "deploy": "vercel",
+    "postinstall": "prisma generate"
   },
   "devDependencies": {
     "@types/bun": "latest",
@@ -16,6 +18,7 @@
     "typescript": "^5"
   },
   "dependencies": {
+    "@hono/node-server": "^1.14.1",
     "@hono/trpc-server": "^0.3.4",
     "@prisma/client": "^6.8.2",
     "@tanstack/react-query": "^5.76.1",

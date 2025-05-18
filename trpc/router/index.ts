@@ -1,4 +1,4 @@
-import { router } from '..';
+import { router } from '../index.js';
 import { productRouter } from './product.js';
 
 export const appRouter = router({
